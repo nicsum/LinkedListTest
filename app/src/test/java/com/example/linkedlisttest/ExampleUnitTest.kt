@@ -50,4 +50,34 @@ class ExampleUnitTest {
         assertEquals(linkedList.get(0), two)
         assertEquals(linkedList.length, 2)
     }
+
+
+    @Test
+    fun timeTest() {
+
+        val arrayList = ArrayList<Int>()
+
+
+        repeat(1_000) {
+            arrayList.add(it)
+            linkedList.add(it)
+        }
+
+
+        val startTimeRemovingFromArrayList = System.currentTimeMillis()
+        repeat(1_000) {
+            arrayList.remove(it)
+        }
+        val resultTimeRemovingFromArrayList = System.currentTimeMillis() - startTimeRemovingFromArrayList
+
+
+        val startTimeRemovingFromLinkedList = System.currentTimeMillis()
+        repeat(1_000) {
+            linkedList.remove(it)
+        }
+        val resultTimeRemovingFromLinkedList = System.currentTimeMillis() - startTimeRemovingFromLinkedList
+
+        assertTrue(resultTimeRemovingFromLinkedList < resultTimeRemovingFromArrayList)
+
+    }
 }
